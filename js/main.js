@@ -52,37 +52,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileBreakpoint = 768;
     
     function checkScreenSize() {
+        // Remove existing mobile navigation elements when screen size changes
+        const existingToggle = document.querySelector('.mobile-nav-toggle');
+        const navLinks = document.querySelector('#navbar ul');
+        
+        if (existingToggle) {
+            existingToggle.remove();
+            navLinks.classList.remove('mobile-nav-links', 'show');
+        }
+        
         if (window.innerWidth <= mobileBreakpoint) {
-            // Add mobile-friendly navigation if not already present
-            if (!document.querySelector('.mobile-nav-toggle')) {
-                const navContainer = document.querySelector('#navbar .container');
-                const navLinks = document.querySelector('#navbar ul');
-                
-                // Create mobile toggle button
-                const mobileToggle = document.createElement('button');
-                mobileToggle.className = 'mobile-nav-toggle';
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                navContainer.insertBefore(mobileToggle, navLinks);
-                
-                // Add mobile class to nav links
-                navLinks.classList.add('mobile-nav-links');
-                
-                // Toggle mobile menu
-                mobileToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('show');
-                    this.innerHTML = navLinks.classList.contains('show') ? 
-                        '<i class="fas fa-times"></i>' : 
-                        '<i class="fas fa-bars"></i>';
+            // Only add mobile navigation on small screens
+            const navContainer = document.querySelector('#navbar .container');
+            
+            // Create mobile toggle button
+            const mobileToggle = document.createElement('button');
+            mobileToggle.className = 'mobile-nav-toggle';
+            mobileToggle.setAttribute('aria-label', 'Toggle navigation menu');
+            mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            navContainer.insertBefore(mobileToggle, navLinks);
+            
+            // Add mobile class to nav links
+            navLinks.classList.add('mobile-nav-links');
+            
+            // Toggle mobile menu
+            mobileToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+                this.innerHTML = navLinks.classList.contains('show') ? 
+                    '<i class="fas fa-times"></i>' : 
+                    '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('show');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 });
-                
-                // Close menu when clicking a link
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navLinks.classList.remove('show');
-                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    });
-                });
-            }
+            });
         }
     }
     
