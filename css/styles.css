@@ -457,6 +457,14 @@ header .tagline {
     width: 30px;
 }
 
+.certification-card {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 150px;
+}
+
 /* Footer */
 footer {
     background-color: #333;
