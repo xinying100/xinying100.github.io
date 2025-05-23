@@ -114,4 +114,35 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     // Initial check
     animateOnScroll();
+
+    const track   = document.getElementById('carouselTrack');
+    const slides  = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    let currentIndex   = 0;
+    const slidesToShow = 3;
+    const totalSlides  = slides.length;
+    const maxIndex     = Math.ceil(totalSlides / slidesToShow) - 1;
+
+    function updateCarousel() {
+        const offset   = currentIndex * 900; // 300px * 3
+        track.style.transform = `translateX(-${offset}px)`;
+    }
+
+    function nextSlide() {
+        currentIndex   = (currentIndex + 1) > maxIndex ? 0 : currentIndex + 1;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentIndex   = (currentIndex - 1) < 0 ? maxIndex : currentIndex - 1;
+        updateCarousel();
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    setInterval(nextSlide, 3000); // Auto-slide every 3 seconds
+
 });
