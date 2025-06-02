@@ -458,30 +458,126 @@ header .tagline {
 }
 
 .certification-card {
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    display: block;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
 }
 
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.certification-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.certification-info {
+    margin-top: 10px;
+}
+
+.certification-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.certification-date {
+    font-size: 12px;
+    color: #666;
+}
 
 .carousel-container {
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
     overflow: hidden;
-    margin: auto;
+    margin: 20px auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.certificates-carousel {
+    padding: 0 60px; /* Increased side padding to prevent overlap with arrows */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Ensure proper positioning context for arrows */
 }
 
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    align-items: center;
+    min-height: 350px;
+    /* Remove justify-content: center to allow proper sliding */
 }
 
 .carousel-slide {
-    min-width: 300px;
+    min-width: 250px;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 0 20px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4d94ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 100; /* Increased z-index to ensure buttons stay on top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-button:hover {
+    background-color: #3385ff;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.certificates-section {
+    width: 100%;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .carousel-slide img {
